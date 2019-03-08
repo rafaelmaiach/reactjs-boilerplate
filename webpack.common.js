@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const merge = require('webpack-merge');
 const WebpackBar = require('webpackbar');

@@ -22,6 +22,7 @@ module.exports = (app, dirname) => {
 
   const api = Router();
 
+  app.use(bodyParser.json());
   app.use(cookieParser(config.cookieSecret, { sameSite: true, secure: true, httpOnly: true }));
 
   const isInProduction = config.env === 'production';
