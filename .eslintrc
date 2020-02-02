@@ -18,13 +18,18 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "./config/webpack.common.js"
+        "config": "./webpack.common.js",
+        "env": {
+          "NODE_ENV": "development",
+          "production": false
+        }
       }
     }
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "react/jsx-curly-newline": "off"
   }
 }

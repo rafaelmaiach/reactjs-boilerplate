@@ -4,18 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const productionEnv = new webpack.EnvironmentPlugin({ NODE_ENV: 'production' });
-
-const cleanOptions = {
-  exclude: [],
-  verbose: true,
-  dry: false,
-};
 
 const TerserMizimizerPlugin = new TerserPlugin({
   test: /\.js(\?.*)?$/i,
@@ -84,8 +78,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(cleanOptions),
     new webpack.DefinePlugin({ productionEnv }),
+    new CleanWebpackPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
@@ -123,6 +117,6 @@ module.exports = {
     }),
   ],
   performance: {
-    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+    assetFilter: (assetFilename) => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 };
